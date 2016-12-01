@@ -1,7 +1,8 @@
 import csv
 import os
-from instagram.client import InstagramAPI
 
+from api.instagram import Instagram
+from pprint import pprint
 
 def write_to_csv(filepath: str, data: list, mode: str = 'a'):
     print("**** Writing results to csv")
@@ -15,7 +16,11 @@ def write_to_csv(filepath: str, data: list, mode: str = 'a'):
 
 def main():
     """Main method."""
-    print('collector')
+    #ask for access token
+    access_token = input("Access Token: ").strip()
+    api = Instagram(access_token)
+
+    pprint(api.get_users_self())
 
 
 if __name__ == '__main__':
