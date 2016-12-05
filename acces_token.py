@@ -8,14 +8,15 @@ import requests
 client_id = input("Client ID: ").strip()
 client_secret = input("Client Secret: ").strip()
 redirect_uri = input("Redirect URI: ").strip()
-raw_scope = input("Requested scope (separated by spaces, blank for just basic read): ").strip()
-scope = raw_scope.split(' ')
-if not scope or scope == [""]:
-    scope = ["basic"]
+print("Possible scopes: basic, public_content, follower_list, comments, relationships, likes.")
+print("Combinations are also possible. Example: basic+public_content.")
+scope = input("Requested scope: ").strip()
+if not scope or scope == "":
+    scope = "basic"
 
 # Step One: Direct your user to our authorization URL
 print("Visit this page and authorize access in your browser:\n")
-print("https://api.instagram.com/oauth/authorize?client_id="+client_id+"&redirect_uri="+redirect_uri+"&response_type=code")
+print("https://api.instagram.com/oauth/authorize?client_id="+client_id+"&redirect_uri="+redirect_uri+"&response_type=code&scope="+scope)
 print("\n")
 
 # Step Two: Receive the redirect from Instagram
