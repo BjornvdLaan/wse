@@ -10,6 +10,10 @@ import struct
 import imghdr
 
 
+def connect_to_instagram():
+    return
+
+
 def getImageSize(fname):
     with open(fname, 'rb') as fhandle:
         head = fhandle.read(24)
