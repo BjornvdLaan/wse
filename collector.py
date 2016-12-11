@@ -31,7 +31,7 @@ def collect_users():
     print("data loaded")
 
     found_users = []
-    while len(found_users) < (50 - len(already)):
+    while len(found_users) < (100 - len(already)):
         user_info = Instagram.getUsernameInfo(random.choice(users))
         if type(user_info) == bool:
             print("BOOL")
@@ -60,6 +60,21 @@ def collect_users():
         else:
             print("user does not meet criteria")
 
+
+def find_duplicate_users():
+    already = []
+    duplicates_found = False
+    with open('results/users.csv', 'r') as csvfile0:
+        reader = csv.reader(csvfile0, delimiter=',', quotechar='"')
+        for row in reader:
+            if row[0] in already:
+                duplicates_found = True
+                print(row[0])
+            already.append(row[0])
+
+    if not duplicates_found:
+        print('no duplicates')
+        
 
 def collect_posts():
     username = input("Username:")
@@ -105,7 +120,8 @@ def collect_posts():
 
 def main():
     """Main method."""
-
+    #collect_users()
+    find_duplicate_users()
 
 
 if __name__ == '__main__':
