@@ -74,7 +74,7 @@ def find_duplicate_users():
 
     if not duplicates_found:
         print('no duplicates')
-        
+
 
 def collect_posts():
     username = input("Username:")
@@ -118,10 +118,30 @@ def collect_posts():
                      item["comment_count"]]
                 )
 
+
+def find_duplicate_posts():
+    duplicates_found = False
+    already = set()
+
+    with open('results/posts.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        for row in reader:
+            if row[0] in already:
+                duplicates_found = True
+                print(row[0])
+
+            already.add(row[0])
+
+    if not duplicates_found:
+        print('no duplicates')
+
+
 def main():
     """Main method."""
     #collect_users()
-    find_duplicate_users()
+    #find_duplicate_users()
+    #collect_posts()
+    find_duplicate_posts()
 
 
 if __name__ == '__main__':
